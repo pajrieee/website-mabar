@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tampilan Flow</title>
+    <style>
+        /* CSS untuk Styling Dasar dan Latar Belakang */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Ganti 'URL_BACKGROUND_KAMU' dengan URL/path gambar latar belakang yang Anda inginkan */
+            background-image: url('img/12.jpg');
+            /* Catatan: Untuk testing tanpa gambar, Anda bisa menggunakan background-color: #333; */
+        }
+
+        .box {
+            /* Desain kotak pop-up dengan latar belakang transparan gelap */
+            background: rgba(0, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            width: 250px;
+            height: 300px;
+
+            /* MODIFIKASI GARIS RADIUS CERAH (GLOW & BORDER) */
+            box-shadow:
+                /* 1. Garis Luar (Border) yang Mengikuti Radius */
+                0 0 0 3px #3cb87a,
+                /* Tidak ada blur (0), spread 3px. Ini membuat garis putih solid. */
+
+                /* 2. Glow Lembut (untuk efek cerah di sekitar garis) */
+                0 0 15px rgba(57, 195, 236, 0.7),
+                /* Blur 15px, opacity 70% */
+
+                /* 3. Bayangan Gelap Asli (untuk kedalaman) */
+                0 4px 8px rgba(63, 16, 192, 0.4);
+        }
+
+        /* Styling untuk elemen gambar di tampilan awal */
+        #boxAwal #imageAwal {
+            width: 40%;
+            /* Membuat gambar selebar kotak induk */
+            max-height: 100px;
+            /* Batasi tinggi maksimum agar tidak terlalu besar */
+            object-fit: cover;
+            /* Memastikan gambar mengisi area tanpa terdistorsi */
+            margin-bottom: 30px;
+            /* Jarak antara gambar dan teks di bawahnya */
+            border-radius: 5px;
+            /* Opsional: memberikan sudut membulat */
+        }
+
+        #boxYa #imageKedua {
+            width: 40%;
+            /* Membuat gambar selebar kotak induk */
+            max-height: 100px;
+            /* Batasi tinggi maksimum agar tidak terlalu besar */
+            object-fit: cover;
+            /* Memastikan gambar mengisi area tanpa terdistorsi */
+            margin-bottom: 30px;
+            /* Jarak antara gambar dan teks di bawahnya */
+            border-radius: 5px;
+            /* Opsional: memberikan sudut membulat */
+        }
+
+        /* Styling untuk kontainer tombol (Wadah Berwarna dan Beradius) */
+        .button-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 15px;
+
+        }
+
+        /* Styling untuk tombol Ya/Tidak (Garis Emas) */
+        .button-container button {
+            font-size: 1.3em;
+            /* Padding disesuaikan karena kontainer sudah punya padding */
+            padding: 10px 15px;
+            width: 48%;
+            /* Sedikit diperbesar agar pas dengan ruang 100% setelah padding kontainer */
+
+            /* Pastikan margin dihilangkan atau diatur agar tidak mengganggu space-between */
+            margin: 0;
+
+            border-radius: 8px;
+            color: #e9f1e9;
+            /* Teks Putih */
+            background-color: transparent;
+            /* Latar Belakang Polos */
+            border: 2px solid #0fe20f;
+            /* Border Kuning Emas */
+
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* Efek Glow Emas */
+            box-shadow: 0 0 10px rgba(81, 255, 0, 0.5);
+        }
+
+        .button-container button:hover {
+            background-color: rgba(14, 250, 6, 0.349);
+            box-shadow: 0 0 15px rgba(0, 255, 34, 0.8);
+        }
+
+
+
+        /* Anda mungkin perlu menyesuaikan CSS untuk .box, .initial-text, .yes, dan .no sesuai kebutuhan */
+        /* Styling Teks untuk Tampilan Awal */
+        .initial-text {
+            font-size: 1.4em;
+            /* UKURAN FONT DIPERBESAR */
+            color: #18c4db;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Styling untuk tombol Login */
+        .login {
+            /* Ukuran dan Jarak */
+            font-size: 1.1em;
+            padding: 12px 25px;
+            margin-top: 15px;
+            width: 90%;
+
+            /* Desain Emas dan Transparan */
+            border-radius: 8px;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid #FFD700;
+
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+
+            /* Efek Glow Emas */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Efek saat tombol disentuh (Hover) */
+        .login:hover {
+            background-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Styling untuk tombol Login */
+        .kirim {
+            /* Ukuran dan Jarak */
+            font-size: 1.1em;
+            padding: 12px 25px;
+            margin-top: 15px;
+            width: 90%;
+
+            /* Desain Emas dan Transparan */
+            border-radius: 8px;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid #FFD700;
+
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+
+            /* Efek Glow Emas */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Efek saat tombol disentuh (Hover) */
+        .kirim:hover {
+            background-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+
+        /* Styling Tambahan untuk Textarea pada Tampilan No */
+        #alasan {
+            width: 90%;
+            height: 80px;
+            /* Dibuat sedikit lebih tinggi */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            /* Agar padding tidak menambah total lebar */
+            resize: none;
+            /* Mencegah user mengubah ukuran textarea */
+            background-color: #333;
+            color: white;
+        }
+       .credit {
+    position: absolute;
+    bottom: 160px;   /* NAIKKAN POSISI DI SINI (semakin besar semakin naik) */
+    width: 100%;
+    text-align: center;
+    font-size: 1.1em;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 255, 234, 0.7);
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="box" id="boxAwal">
+        <img id="imageAwal" src="img/mlbb.png" alt="Gambar Ilustrasi">
+        <div class="initial-text" id="animasi">Hayu Mabar MobileLegends? </div>
+
+        <div class="button-container">
+            <button class="yes" onclick="klikYa()">Ya</button>
+            <button class="no" onclick="klikNo()">Tidak</button>
+        </div>
+    </div>
+
+    <div class="box" id="boxYa" style="display:none;">
+        <img id="imageKedua" src="img/mlbb.png" alt="Gambar Ilustrasi">
+        <div class="initial-text">Gaskeun Login!!!!</div>
+        <button class="login" onclick="attemptAppOpen()">Login</button>
+    </div>
+
+    <div class="box" id="boxNo" style="display:none;">
+        <div class="initial-text">Ketik alasan Anda di bawah ini:</div>
+        <textarea id="alasan" placeholder="Ketik alasan mengapa tidak ingin bermian...."></textarea>
+        <button class="kirim" onclick="kirimAlasan()">Kirim</button>
+    </div>
+
+    <div class="credit">- Created by Muhamad Pajri -</div>
+
+
+    <script>
+
+    const SHARE_LINK = 'https://buatkamu123.netlify.app'; 
+    const NOMOR_PENERIMA = '083126161042'; // <--- MASUKKAN NOMOR KAMU DI SINI
+
+    const MLBB_URI = 'mobilelegends://';
+    const PLAYSTORE_LINK = 'https://play.google.com/store/apps/details?id=com.mobile.legends';
+    const DESKTOP_LINK = 'https://m.mobilelegends.com/';
+
+    function klikYa() {
+        document.getElementById('boxAwal').style.display = 'none';
+        document.getElementById('boxNo').style.display = 'none';
+        document.getElementById('boxYa').style.display = 'block';
+    }
+
+    function isMobileDevice() {
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function attemptAppOpen() {
+        if (isMobileDevice()) {
+            const start = Date.now();
+            window.location.href = MLBB_URI;
+
+            setTimeout(() => {
+                if (Date.now() - start < 2500) {
+                    alert("Aplikasi ML tidak terdeteksi. Mengarahkan ke PlayStore...");
+                    window.location.href = PLAYSTORE_LINK;
+                }
+            }, 2000);
+
+        } else {
+            alert("Anda memakai Laptop/PC. Mengarahkan ke website resmi MLBB.");
+            window.location.href = DESKTOP_LINK;
+        }
+    }
+
+    function klikNo() {
+        document.getElementById('boxAwal').style.display = 'none';
+        document.getElementById('boxYa').style.display = 'none';
+        document.getElementById('boxNo').style.display = 'block';
+    }
+
+    function kirimAlasan() {
+        const alasan = document.getElementById('alasan').value;
+
+        if (alasan.trim() === '') {
+            alert("Mohon ketikkan alasan Anda.");
+            return;
+        }
+
+        const pesanWhatsApp =
+            `Halo, aku tidak bisa mabar karena:\n"${alasan}"\n\n` +
+            `Tapi ini link-nya dulu:\n${SHARE_LINK}`;
+
+        const encoded = encodeURIComponent(pesanWhatsApp);
+
+        // WA pengunjung membuka pesan untuk dikirim ke nomor kamu
+        const linkWA = `https://wa.me/${NOMOR_PENERIMA}?text=${encoded}`;
+
+        alert("Kamu akan dialihkan ke WhatsApp untuk mengirim alasan ini.");
+        window.location.href = linkWA;
+    }
+
+</script>
+
+</body>
+
+</html>
